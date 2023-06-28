@@ -1,13 +1,24 @@
 ---
 import Layout from "../layouts/Layout.astro";
-import Card from "../components/Card.astro";
 ---
 
-<Layout title="Welcome to Astro.">
-	<main></main>
-</Layout>
+<Layout title="Welcome to Astro." />
+
+<main>
+	<div class="font-grid">
+		<a href="https://es.intermiamicf.com/">Instagram</a>
+	</div>
+</main>
 
 <style>
+	#font-grid {
+		font-style: italic;
+		font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS",
+			sans-serif; /*Fuente Caligrafica background-color: rgb(231, 231, 7);*/
+		font-weight: 800;
+		font-size: larger;
+		font-stretch: expanded;
+	}
 	:root {
 		--astro-gradient: linear-gradient(0deg, #4f39fa, #da62c4);
 	}

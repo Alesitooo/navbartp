@@ -1,0 +1,88 @@
+---
+import Layout from "../layouts/Layout.astro";
+---
+
+<Layout title="Contacto">
+    <main class="flex justify-center">
+        <div class="max-w-sm flex justify-center flex-col">
+            <h2 class="text-center text-2xl">Contacto</h2>
+            <form class="columna" id="contact">
+                <div class="fila">
+                    <div class="columna">
+                        <label for="name">Nombre:</label>
+                        <input
+                            class="bg-gray-200"
+                            id="name"
+                            type="text"
+                            name="nombre"
+                            placeholder="escriba aqui su nombre"
+                        />
+                    </div>
+                    <div class="columna">
+                        <label for="apellido">Apellido:</label>
+                        <input
+                            class="bg-gray-200"
+                            id="apellido"
+                            type="text"
+                            name="apellido"
+                            placeholder="escriba aqui su apellido"
+                        />
+                    </div>
+                </div>
+                <div class="columna">
+                    <label for="email">Email:</label>
+                    <input
+                        class="bg-gray-200"
+                        id="name"
+                        type="email"
+                        name="email"
+                        placeholder="escriba aca su email"
+                    />
+                </div>
+                <div class="columna">
+                    <label for="mensaje">mensajes</label>
+                    <input
+                        class="bg-gray-200"
+                        id="mensaje"
+                        type="text"
+                        name="mensaje"
+                        placeholder="escriba aqui su mensaje aqui"
+                    />
+                </div>
+                <input type="submit" value="enviar" />
+            </form>
+        </div>
+    </main>
+</Layout>
+
+<style>
+    .columna {
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+        width: 100%;
+    }
+    .fila {
+        display: flex;
+        gap: 12px;
+    }
+</style>
+
+<script is:inline>
+const form = document.getElementById("contact");
+form.addEventListener("submit", (event) => {
+    // stop form submission
+    event.preventDefault();
+
+    const name = form.elements.nombre;
+    const apellido = form.elements["apellido"];
+    if (name.value === "") {
+        name.style.borderColor = "red";
+        name.style.borderWidth = "1px";
+    } else {
+        name.style.borderColor = "none";
+        name.style.borderWidth = "0px";
+        alert("se envio" + name.value + " " + apellido.value);
+    }
+});
+</script>

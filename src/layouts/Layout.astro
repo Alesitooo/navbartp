@@ -1,10 +1,8 @@
 ---
 import Hamburger from "../components/Hamburger.astro";
-
 export interface Props {
 	title: string;
 }
-
 const { title } = Astro.props as Props;
 ---
 
@@ -18,27 +16,28 @@ const { title } = Astro.props as Props;
 		<title>{title}</title>
 	</head>
 	<body>
-		<header class="">
+		<header class="w-full">
 			<nav
 				id="nav"
 				class="Navbar slidevertical flex flex-wrap md:flex-nowrap"
 				aria-label="Top"
 			>
-				<div class="">
+				<div class="logo">
 					<a href="/" class=""><img src="logo.png" width="82px" /></a>
 					<!-- img src, Coloca el logo; width, maximo de pixeles-->
 				</div>
-
 				<Hamburger />
-				<!--hidden md:flex flex-col md:flex-row mt-10 md:pt-0 md:border-0 items-center justify-center-->
-				<div id="menu-pc" class="w-full hidden md:slide">
-					<a href="/" class="">incio</a><!-- Link a x pagina-->
-					<a href="/" class="">sobre mi</a>
-					<a href="/" class="">contacto</a>
+				<div id="menu-pc" class="container w-full hidden md:slide">
+					<a href="/" class="">incio</a>
+					<!-- Link a x pagina-->
+					<a href="/about" class="">sobre mi</a>
+					<a href="/contacto" class="">contacto</a>
 				</div>
 			</nav>
-			<slot />
 		</header>
+		<div class="p-12">
+			<slot />
+		</div>
 	</body>
 	<style>
 		#nav {
@@ -46,10 +45,9 @@ const { title } = Astro.props as Props;
 			flex-direction: row; /*Direccion de la lista: fila horizontal ---*/
 			justify-content: space-between; /*Separacion de items*/
 			align-items: center; /*Alineamiento de items*/
-			background-color: rgb(231, 231, 7); /*Color de fondo*/
-			background-size: 40px; /*Tamaño de fondo*/
+			background-color: rgb(231, 231, 7);
 			padding: 10px; /*Relleno*/
-			margin-left: auto; /*Margen derecho*/
+			width: 100%; /*Margen derecho*/
 			animation: Entradadesdearriba 1s ease; /*Animacion y su delay*/
 		}
 		#menu-pc {
@@ -58,10 +56,11 @@ const { title } = Astro.props as Props;
 			padding-bottom: 10px;
 			align-items: center;
 			margin-top: 10px;
+			background-color: transparent;
 			gap: 55px;
 			font-style: italic;
 			font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS",
-				sans-serif; /*Fuente Caligrafica*/
+				sans-serif; /*Fuente Caligrafica background-color: rgb(231, 231, 7);*/
 			font-weight: 800;
 			font-size: larger;
 			font-stretch: expanded;
@@ -70,12 +69,18 @@ const { title } = Astro.props as Props;
 		}
 
 		@media (min-width: 768px) {
+			#nav {
+				justify-content: space-between;
+			}
 			#burger {
 				display: none;
 			}
 			#menu-pc {
 				display: flex;
+				background-color: rgb(231, 231, 7);
 				flex-direction: row;
+				width: auto;
+				align-items: center;
 			}
 		}
 		@keyframes Entradadesdearriba {
@@ -94,16 +99,22 @@ const { title } = Astro.props as Props;
 				transform: translateY(-200%);
 			}
 		}
-	
+
 		.md:slide (min-width: 768px) {
 			width: 100%;
 
 			animation: Entradadesdearriba 0.8s ease;
 		}
+		@keyframes bajada {
+			from {
+				height: 50px;
+			}
+			to {
+				transform: 100%;
+			}
+		}
 		.slidevertical {
-			height: 100%;
-
-			animation: Entradadesdearriba 0.8s ease;
+			animation: bajada 0.8s ease;
 		}
 	</style>
 	<script is:inline>
@@ -112,8 +123,6 @@ const { title } = Astro.props as Props;
 			const menu = document.getElementById("menu-pc");
 			if (window.getComputedStyle(menu).display === "none") {
 				menu.style.display = "flex";
-
-				// Do something..
 			} else {
 				menu.style.display = "none";
 			}
