@@ -3,17 +3,17 @@ import Layout from "../layouts/Layout.astro";
 ---
 
 <Layout title="Contacto">
-    <main class="flex justify-center">
-        <div class="max-w-sm flex justify-center flex-col">
+    <main class="flex justify-center w-full">
+        <div class="max-w-sm flex justify-center w-full flex-col">
             <h2 class="text-center text-2xl">Contacto</h2>
             <form
                 action="https://formsubmit.co/44a7efb6ed0b704b299ec7f5129eaca6"
                 method="POST"
-                class="columna"
+                class="flex flex-col w-full gap-3"
                 id="contact"
             >
-                <div class="fila">
-                    <div class="columna">
+                <div class="flex flex-row gap-4 justify-center">
+                    <div class="flex flex-col w-1/2">
                         <label for="name">Nombre:</label>
                         <input
                             class="bg-gray-200"
@@ -22,7 +22,7 @@ import Layout from "../layouts/Layout.astro";
                             placeholder="escriba aqui su nombre"
                         />
                     </div>
-                    <div class="columna">
+                    <div class="flex flex-col w-1/2ww">
                         <label for="apellido">Apellido:</label>
                         <input
                             class="bg-gray-200"
@@ -55,18 +55,25 @@ import Layout from "../layouts/Layout.astro";
                 <input type="submit" value="enviar" />
             </form>
         </div>
+        <style>
+            .columna {
+                display: flex;
+                flex-direction: column;
+                gap: 20px;
+            }
+            .fila {
+                display: flex;
+                flex-direction: column;
+                gap: 12px;
+            }
+
+            @media (min-width: 768px) {
+                .fila {
+                    display: flex;
+                    flex-direction: row;
+                    gap: 12px;
+                }
+            }
+        </style>
     </main>
 </Layout>
-
-<style>
-    .columna {
-        display: flex;
-        flex-direction: column;
-        gap: 12px;
-        width: 100%;
-    }
-    .fila {
-        display: flex;
-        gap: 12px;
-    }
-</style>
