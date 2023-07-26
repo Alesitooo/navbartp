@@ -9,7 +9,31 @@ import Layout from "../layouts/Layout.astro";
 		<a href="https://es.intermiamicf.com/">Instagram</a>
 	</div>
 </main>
+<script is:inline>
+const form = document.getElementById("contact");
+console.log(form);
+console.log(document.getElementById("email"));
+form.addEventListener("submit", (event) => {
+	// stop form submission
+	event.preventDefault();
 
+	const name = form.elements.nombre;
+	const apellido = form.elements["apellido"];
+
+	let valido = true;
+	for (i = 0; i < form.elements.length; i = i + 1) {
+		const elemt = form[i];
+		if (form[i].value === "") {
+			form[i].style.borderColor = "red";
+			form[i].style.borderWidth = "1px";
+			valido = false;
+		}
+	}
+	if (valido) {
+		alert("valido");
+	} else alert("complete los campos");
+});
+</script>
 <style>
 	#font-grid {
 		font-style: italic;
